@@ -1,0 +1,9 @@
+{
+  "apiKey": "MY_FIREBASE_API_KEY",
+  "authDomain": "MY_FIREBASE_AUTH_DOMAIN",
+  "projectId": "MY_FIREBASE_PROJECT_ID",
+  "storageBucket": "MY_FIREBASE_STORAGE_BUCKET",
+  "messagingSenderId": "MY_MESSAGING_SENDER_ID",
+  "appId": "MY_FIREBASE_APP_ID",
+  "measurementId": "MY_FIREBASE_MEASUREMENT_ID"
+}

@@ -1,0 +1,174 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and main settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "city": { "type": "string" },
+        "occupation": { "type": "string" },
+        "commuteDistance": { "type": "number" },
+        "transportMode": { "type": "string" },
+        "fuelType": { "type": "string" },
+        "electricityUsage": { "type": "number" },
+        "acUsage": { "type": "number" },
+        "foodPreference": { "type": "string" },
+        "shoppingHabits": { "type": "string" },
+        "wasteHabits": { "type": "string" },
+        "level": { "type": "number" },
+        "xp": { "type": "number" },
+        "ecoPoints": { "type": "number" },
+        "completedOnboarding": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastLogin": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "CarbonData": {
+      "title": "CarbonData",
+      "description": "User's carbon footprint data",
+      "type": "object",
+      "properties": {
+        "total": { "type": "number" },
+        "budget": { "type": "number" },
+        "spent": { "type": "number" },
+        "reductionGoal": { "type": "number" },
+        "breakdown": { "type": "object" },
+        "history": { "type": "array" }
+      }
+    },
+    "Mission": {
+      "title": "Mission",
+      "description": "A mission for the user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "target": { "type": "number" },
+        "current": { "type": "number" },
+        "completed": { "type": "boolean" },
+        "xpReward": { "type": "number" },
+        "ecoPointsReward": { "type": "number" },
+        "category": { "type": "string" }
+      }
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "description": "A badge or milestone",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "badgeIcon": { "type": "string" },
+        "milestoneKg": { "type": "number" },
+        "unlockedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Activity": {
+      "title": "Activity",
+      "description": "A record in the activity timeline",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "metadata": { "type": "object" }
+      }
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "A chat message with the AI EcoAgent",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Report": {
+      "title": "Report",
+      "description": "A generated sustainability report",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "url": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "summary": { "type": "string" }
+      }
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "read": { "type": "boolean" },
+        "link": { "type": "string" }
+      }
+    },
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Entry in the global leaderboard",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "level": { "type": "number" },
+        "ecoPoints": { "type": "number" },
+        "rank": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "Primary user document"
+    },
+    "/users/{uid}/data/carbon": {
+      "schema": "CarbonData",
+      "description": "Carbon footprint details"
+    },
+    "/users/{uid}/missions/{missionId}": {
+      "schema": "Mission",
+      "description": "Missions assigned to user"
+    },
+    "/users/{uid}/achievements/{achievementId}": {
+      "schema": "Achievement",
+      "description": "Achievements unlocked by user"
+    },
+    "/users/{uid}/activities/{activityId}": {
+      "schema": "Activity",
+      "description": "Activity history items"
+    },
+    "/users/{uid}/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notifications"
+    },
+    "/users/{uid}/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Chat history with AI"
+    },
+    "/users/{uid}/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Sustainability reports"
+    },
+    "/leaderboard/{uid}": {
+      "schema": "LeaderboardEntry",
+      "description": "Public leaderboard data"
+    }
+  }
+}

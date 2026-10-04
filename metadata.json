@@ -1,0 +1,6 @@
+{
+  "name": "EcoAgent AI",
+  "description": "Personal Carbon Decision Intelligence Platform to understand, simulate, optimize and reduce carbon footprint.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create, update: if isOwner(uid);
+      allow delete: if isOwner(uid);
+
+      match /activities/{activityId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /notifications/{notificationId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /missions/{missionId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /achievements/{achievementId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /habits/{habitId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /chats/{chatId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /reports/{reportId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /dailyHistory/{recordId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /trees/{treeId} {
+        allow read, write: if isOwner(uid);
+      }
+      match /simulations/{simulationId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    match /leaderboard/{uid} {
+      allow list, get: if isSignedIn();
+      allow create, update: if isOwner(uid)
+        && incoming().uid == request.auth.uid
+        && incoming().name is string
+        && incoming().name.size() <= 100
+        && incoming().level is number
+        && incoming().level >= 0
+        && incoming().level <= 1000
+        && incoming().ecoPoints is number
+        && incoming().ecoPoints >= 0
+        && incoming().ecoPoints <= 1000000
+        && incoming().streak is number
+        && incoming().streak >= 0;
+      allow delete: if isOwner(uid);
+    }
+  }
+}
+
