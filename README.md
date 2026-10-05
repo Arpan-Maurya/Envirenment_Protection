@@ -411,7 +411,7 @@ CarboniQ is built to **WCAG AA** compliance standards:
 
 | Role | Contributor |
 |---|---|
-| Full-Stack Development | Abhishek Gupta |
+| Full-Stack Development | Arpan Maurya |
 *Built with 💚 for a greener future — CarboniQ promptwar 2026*
 
 ---
