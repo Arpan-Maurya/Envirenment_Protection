@@ -58,7 +58,7 @@ Powered by **Google Gemini** via a secure Express.js proxy. EcoAgent knows your 
 ```
 User: "How can I reduce my carbon footprint?"
 
-EcoAgent: "Hi Abhishek! Looking at your footprint of 907kg, your biggest areas
+EcoAgent: "Hi Arpan! Looking at your footprint of 907kg, your biggest areas
 are Home Energy (393kg) and Food (210kg). You have an active mission to reduce
 electricity usage by 10% — unplugging chargers and optimizing your AC usage
 (currently 4 hours) can significantly help..."
